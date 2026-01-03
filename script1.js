@@ -282,4 +282,4 @@ console.log(JSON.parse(localStorage.getItem("dailyHistory")));
 // ============================
 // Αρχικό μπιλιάρδο
 // ============================
-addTable();
+//addTable();
