@@ -55,7 +55,7 @@ addTableBtn.addEventListener("click", addTable);
 // }
 
 function addTable() {
-  const tables = loadTables();
+  const tables = loadBilliardTables();
 
   const newTable = {
     name: `Μπιλιάρδο #${tables.length + 1}`,
@@ -71,7 +71,7 @@ function addTable() {
 }
 
 function createTableUI(index) {
-  const tables = loadTables();
+  const tables = loadBilliardTables();
   const t = tables[index];
 
   const table = document.createElement("div");
@@ -101,7 +101,6 @@ function createTableUI(index) {
 
   tablesContainer.appendChild(table);
 
-  // ⭐ ΤΟ ΣΗΜΑΝΤΙΚΟ
   if (t.running) {
     startTimer(table);
   } else {
