@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Billiard Timer</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+  <div class="top-bar">
+    <div>
+      Τιμή ανά ώρα €:
+      <input type="number" id="pricePerHour" value="5" min="0" step="0.5">
+    </div>
+
+    <div class="total">
+        Σύνολο ημέρας: <span id="dailyTotal">0.00</span> €
+        <button class="reset-day" id="resetDayBtn">Μηδενισμός</button>
+    </div>
+
+  </div>
+
+  <div class="tables" id="tables"></div>
+
+  <button class="add-btn" id="addTableBtn">➕ Προσθήκη Μπιλιάρδου</button>
+
+  <script src="script1.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+:root {
+  --green-dark: #0f3d2e;
+  --green: #1b5e20;
+  --green-light: #2e7d32;
+  --blue: #0d47a1;
+  --brown: #4e342e;
+  --card: #1f1f1f;
+  --text: #f5f5f5;
+  --red: #b71c1c;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0f3d2e; /* καθαρό σκούρο πράσινο τσόχας */
+  color: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+}
+
+
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--brown);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 6px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  width: 80px;
+}
+
+.total {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tables {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.table {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 6px solid var(--green-light);
+}
+
+.table h3 {
+  margin-top: 0;
+  color: #a5d6a7;
+}
+
+.buttons button {
+  margin: 5px 3px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  color: white;
+}
+
+.start {
+  background: var(--green-light);
+}
+
+.stop {
+  background: var(--red);
+}
+
+.reset {
+  background: #6d4c41;
+}
+
+
+.buttons button:hover {
+  opacity: 0.85;
+}
+
+.add-btn {
+  margin-top: 20px;
+  padding: 12px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  background: var(--green);
+  color: white;
+}
+
+.add-btn:hover {
+  opacity: 0.9;
+}
+
+.reset-day {
+  background: #b71c1c;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.reset-day:hover {
+  opacity: 0.85;
+}
+
