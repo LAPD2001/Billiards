@@ -198,6 +198,12 @@ function resetTable(table) {
   table.querySelector(".table-name").value = `Μπιλιάρδο #${[...tablesContainer.children].indexOf(table) + 1}`;
 }
 
+function calculateCost(seconds) {
+  const pricePerHour =
+    parseFloat(document.getElementById("pricePerHour").value) || 0;
+
+  return (seconds / 3600) * pricePerHour;
+}
 
 function updateTable(table) {
   const id = table.dataset.id;
@@ -219,13 +225,13 @@ function updateTable(table) {
 // ============================
 // Υπολογισμοί
 // ============================
-function updateCost(table, seconds) {
-  const pricePerHour = parseFloat(document.getElementById("pricePerHour").value) || 0;
-  const minutes = seconds / 60;
-  const cost = minutes * (pricePerHour / 60);
+// function updateCost(table, seconds) {
+//   const pricePerHour = parseFloat(document.getElementById("pricePerHour").value) || 0;
+//   const minutes = seconds / 60;
+//   const cost = minutes * (pricePerHour / 60);
 
-  table.querySelector(".cost").textContent = cost.toFixed(2);
-}
+//   table.querySelector(".cost").textContent = cost.toFixed(2);
+// }
 
 function formatTime(sec) {
   const h = String(Math.floor(sec / 3600)).padStart(2, "0");
