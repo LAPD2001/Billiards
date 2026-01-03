@@ -1,8 +1,13 @@
 let tableCount = 0;
 
+const RESET_HOUR = 4; // 04:00 , για να κανιουμε reset το ημερήσιο σύνολο
+
+
+
+let currentBusinessDate = localStorage.getItem("businessDate") || getBusinessDate();
 let dailyTotal = parseFloat(localStorage.getItem("dailyTotal")) || 0;
-const dailyTotalEl = document.getElementById("dailyTotal");
 dailyTotalEl.textContent = dailyTotal.toFixed(2);
+
 
 const tablesContainer = document.getElementById("tables");
 const addTableBtn = document.getElementById("addTableBtn");
@@ -111,6 +116,42 @@ function resetDailyTotal() {
   localStorage.setItem("dailyTotal", dailyTotal);
   dailyTotalEl.textContent = "0.00";
 }
+
+
+function getBusinessDate() {
+  const now = new Date();
+  if (now.getHours() < RESET_HOUR) {
+    now.setDate(now.getDate() - 1);
+  }
+  return now.toISOString().split("T")[0]; // YYYY-MM-DD
+}
+
+
+setInterval(checkBusinessDayChange, 30000);
+function checkBusinessDayChange() {
+  const today = getBusinessDate();
+
+  if (today !== currentBusinessDate) {
+    saveDailyHistory(currentBusinessDate, dailyTotal);
+
+    dailyTotal = 0;
+    currentBusinessDate = today;
+
+    localStorage.setItem("dailyTotal", 0);
+    localStorage.setItem("businessDate", today);
+    dailyTotalEl.textContent = "0.00";
+  }
+}
+
+function saveDailyHistory(date, amount) {
+  let history = JSON.parse(localStorage.getItem("dailyHistory")) || {};
+  history[date] = amount;
+  localStorage.setItem("dailyHistory", JSON.stringify(history));
+}
+
+console.log(JSON.parse(localStorage.getItem("dailyHistory")));
+
+
 
 
 // ============================
