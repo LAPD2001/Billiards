@@ -253,8 +253,6 @@ function removeTable(table) {
 }
 
 
-
-
 function calculateCost(seconds) {
   const pricePerHour =
     parseFloat(document.getElementById("pricePerHour").value) || 0;
