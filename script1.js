@@ -27,34 +27,6 @@ addTableBtn.addEventListener("click", addTable);
 // ============================
 // Δημιουργία μπιλιάρδου
 // ============================
-// function addTable() {
-//   tableCount++;
-
-//   const table = document.createElement("div");
-//   table.className = "table";
-//   table.dataset.running = "false";
-//   table.dataset.startTime = "0";
-//   table.dataset.elapsed = "0";
-
-//   table.innerHTML = `
-//     <input class="table-name" value="Μπιλιάρδο #${tableCount}">
-//     <div>Χρόνος: <span class="time">00:00:00</span></div>
-//     <div>Χρέωση: <span class="cost">0.00</span> €</div>
-//     <div class="buttons">
-//       <button class="start">START</button>
-//       <button class="stop">STOP</button>
-//       <button class="reset">RESET</button>
-//     </div>
-//   `;
-
-
-//   table.querySelector(".start").addEventListener("click", () => startTimer(table));
-//   table.querySelector(".stop").addEventListener("click", () => stopTimer(table));
-//   table.querySelector(".reset").addEventListener("click", () => resetTable(table));
-
-//   tablesContainer.appendChild(table);
-// }
-
 function addTable() {
   const tables = loadBilliardTables();
 
@@ -81,7 +53,7 @@ function createTableUI(index) {
   table.dataset.running = t.running ? "true" : "false";
 
   table.innerHTML = `
-    <input class="table-name" value="${t.name}">
+    <input class="table-name" value="#${t.name}">
     <div>Χρόνος: <span class="time">00:00:00</span></div>
     <div>Χρέωση: <span class="cost">0.00</span> €</div>
     <div class="buttons">
