@@ -188,22 +188,48 @@ function saveTables(tables) {
 
 
 function resetTable(table) {
-  const cost = parseFloat(table.querySelector(".cost").textContent);
+  const id = table.dataset.id;
+  const tables = loadBilliardTables();
+  const t = tables[id];
 
-  if (cost > 0 && confirm(`Πληρώθηκαν ${cost.toFixed(2)} €;`)) {
+  // Υπολογισμός τελικού κόστους
+  let seconds = t.elapsedBefore;
+  if (t.running) {
+    seconds += Math.floor((Date.now() - t.startTime) / 1000);
+  }
+
+  const cost = calculateCost(seconds);
+
+  // Επιβεβαίωση πληρωμής
+  if (cost > 0 && !confirm(`Πληρώθηκαν ${cost.toFixed(2)} €;`)) {
+    return;
+  }
+
+  // Προσθήκη στο ημερήσιο σύνολο
+  if (cost > 0) {
     dailyTotal += cost;
     localStorage.setItem("dailyTotal", dailyTotal);
     dailyTotalEl.textContent = dailyTotal.toFixed(2);
   }
 
+  // ΣΤΑΜΑΤΑΜΕ TIMER
   clearInterval(table.timer);
-  table.dataset.running = "false";
-  table.dataset.elapsed = "0";
-  table.querySelector(".time").textContent = "00:00:00";
-  table.querySelector(".cost").textContent = "0.00";
 
-  table.querySelector(".table-name").value = `Μπιλιάρδο #${[...tablesContainer.children].indexOf(table) + 1}`;
+  // RESET ΣΤΟ STORAGE
+  t.running = false;
+  t.startTime = null;
+  t.elapsedBefore = 0;
+  t.name = `Μπιλιάρδο #${Number(id) + 1}`;
+
+  saveTables(tables);
+
+  // RESET ΣΤΟ UI
+  table.dataset.running = "false";
+  table.querySelector(".time").textContent = "00:00:00";
+  table.querySelector(".cost").textContent = "0.00 €";
+  table.querySelector(".table-name").value = t.name;
 }
+
 
 
 function calculateCost(seconds) {
