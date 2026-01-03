@@ -30,7 +30,7 @@ function addTable() {
   table.dataset.elapsed = "0";
 
   table.innerHTML = `
-    <h3>Μπιλιάρδο #${tableCount}</h3>
+    <input class="table-name" value="Μπιλιάρδο #${tableCount}">
     <div>Χρόνος: <span class="time">00:00:00</span></div>
     <div>Χρέωση: <span class="cost">0.00</span> €</div>
     <div class="buttons">
@@ -39,6 +39,7 @@ function addTable() {
       <button class="reset">RESET</button>
     </div>
   `;
+
 
   table.querySelector(".start").addEventListener("click", () => startTimer(table));
   table.querySelector(".stop").addEventListener("click", () => stopTimer(table));
@@ -80,6 +81,8 @@ function resetTable(table) {
   table.dataset.elapsed = "0";
   table.querySelector(".time").textContent = "00:00:00";
   table.querySelector(".cost").textContent = "0.00";
+
+  table.querySelector(".table-name").value = `Μπιλιάρδο #${[...tablesContainer.children].indexOf(table) + 1}`;
 }
 
 function updateTable(table) {
