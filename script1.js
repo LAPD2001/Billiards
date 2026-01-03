@@ -1,18 +1,20 @@
 let tableCount = 0;
 
+const dailyTotalEl = document.getElementById("dailyTotal");
+const tablesContainer = document.getElementById("tables");
+const addTableBtn = document.getElementById("addTableBtn");
+const resetDayBtn = document.getElementById("resetDayBtn");
 const RESET_HOUR = 4; // 04:00 , για να κανιουμε reset το ημερήσιο σύνολο
-
-
 
 let currentBusinessDate = localStorage.getItem("businessDate") || getBusinessDate();
 let dailyTotal = parseFloat(localStorage.getItem("dailyTotal")) || 0;
 dailyTotalEl.textContent = dailyTotal.toFixed(2);
 
 
-const tablesContainer = document.getElementById("tables");
-const addTableBtn = document.getElementById("addTableBtn");
+// const tablesContainer = document.getElementById("tables");
+// const addTableBtn = document.getElementById("addTableBtn");
 
-const resetDayBtn = document.getElementById("resetDayBtn");
+// const resetDayBtn = document.getElementById("resetDayBtn");
 resetDayBtn.addEventListener("click", resetDailyTotal);
 
 addTableBtn.addEventListener("click", addTable);
