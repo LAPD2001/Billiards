@@ -1,7 +1,4 @@
-const tables = loadBilliardTables();
-tables.forEach((_, i) => createTableUI(i));
-
-
+//arxikes dhloseis
 let tableCount = 0;
 
 const dailyTotalEl = document.getElementById("dailyTotal");
@@ -14,6 +11,10 @@ let currentBusinessDate = localStorage.getItem("businessDate") || getBusinessDat
 let dailyTotal = parseFloat(localStorage.getItem("dailyTotal")) || 0;
 dailyTotalEl.textContent = dailyTotal.toFixed(2);
 
+
+//arxikopoihsh selidas
+const tables = loadBilliardTables();
+tables.forEach((_, i) => createTableUI(i));
 
 // const tablesContainer = document.getElementById("tables");
 // const addTableBtn = document.getElementById("addTableBtn");
