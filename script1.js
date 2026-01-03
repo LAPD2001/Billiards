@@ -1,3 +1,7 @@
+const tables = loadBilliardTables();
+tables.forEach((_, i) => createTableUI(i));
+
+
 let tableCount = 0;
 
 const dailyTotalEl = document.getElementById("dailyTotal");
@@ -22,17 +26,61 @@ addTableBtn.addEventListener("click", addTable);
 // ============================
 // Δημιουργία μπιλιάρδου
 // ============================
+// function addTable() {
+//   tableCount++;
+
+//   const table = document.createElement("div");
+//   table.className = "table";
+//   table.dataset.running = "false";
+//   table.dataset.startTime = "0";
+//   table.dataset.elapsed = "0";
+
+//   table.innerHTML = `
+//     <input class="table-name" value="Μπιλιάρδο #${tableCount}">
+//     <div>Χρόνος: <span class="time">00:00:00</span></div>
+//     <div>Χρέωση: <span class="cost">0.00</span> €</div>
+//     <div class="buttons">
+//       <button class="start">START</button>
+//       <button class="stop">STOP</button>
+//       <button class="reset">RESET</button>
+//     </div>
+//   `;
+
+
+//   table.querySelector(".start").addEventListener("click", () => startTimer(table));
+//   table.querySelector(".stop").addEventListener("click", () => stopTimer(table));
+//   table.querySelector(".reset").addEventListener("click", () => resetTable(table));
+
+//   tablesContainer.appendChild(table);
+// }
+
 function addTable() {
-  tableCount++;
+  const tables = loadTables();
+
+  const newTable = {
+    name: `Μπιλιάρδο #${tables.length + 1}`,
+    running: false,
+    startTime: null,
+    elapsedBefore: 0
+  };
+
+  tables.push(newTable);
+  saveTables(tables);
+
+  createTableUI(tables.length - 1);
+}
+
+function createTableUI(index) {
+  const tables = loadTables();
+  const t = tables[index];
 
   const table = document.createElement("div");
   table.className = "table";
-  table.dataset.running = "false";
-  table.dataset.startTime = "0";
-  table.dataset.elapsed = "0";
+  table.dataset.id = index;
+  table.dataset.running = t.running ? "true" : "false";
 
   table.innerHTML = `
-    <input class="table-name" value="Μπιλιάρδο #${tableCount}">
+    <input class="table-name" value="${t.name}">
     <div>Χρόνος: <span class="time">00:00:00</span></div>
     <div>Χρέωση: <span class="cost">0.00</span> €</div>
     <div class="buttons">
@@ -42,13 +90,25 @@ function addTable() {
     </div>
   `;
 
+  table.querySelector(".start").onclick = () => startTimer(table);
+  table.querySelector(".stop").onclick = () => stopTimer(table);
+  table.querySelector(".reset").onclick = () => resetTable(table);
 
-  table.querySelector(".start").addEventListener("click", () => startTimer(table));
-  table.querySelector(".stop").addEventListener("click", () => stopTimer(table));
-  table.querySelector(".reset").addEventListener("click", () => resetTable(table));
+  table.querySelector(".table-name").onchange = e => {
+    t.name = e.target.value;
+    saveTables(tables);
+  };
 
   tablesContainer.appendChild(table);
+
+  // ⭐ ΤΟ ΣΗΜΑΝΤΙΚΟ
+  if (t.running) {
+    startTimer(table);
+  } else {
+    updateTable(table);
+  }
 }
+
 
 // ============================
 // Timer functions
@@ -56,18 +116,69 @@ function addTable() {
 function startTimer(table) {
   if (table.dataset.running === "true") return;
 
-  table.dataset.running = "true";
-  table.dataset.startTime = Date.now();
+  const id = table.dataset.id;
+  const tables = loadBilliardTables();
 
-  table.timer = setInterval(() => updateTable(table), 1000);
+  const t = tables[id];
+
+  t.running = true;
+  t.startTime = Date.now();
+
+  saveTables(tables);
+
+  table.dataset.running = "true";
+
+  table.timer = setInterval(() => {
+    updateTable(table);
+  }, 1000);
 }
 
+
 function stopTimer(table) {
-  if (table.dataset.running === "false") return;
+  if (table.dataset.running !== "true") return;
+
+  const id = table.dataset.id;
+  const tables = loadBilliardTables();
+  const t = tables[id];
+
+  const now = Date.now();
+  const elapsed = Math.floor((now - t.startTime) / 1000);
+
+  // προσθέτουμε τον χρόνο που έτρεξε
+  t.elapsedBefore += elapsed;
+
+  // σταματάμε
+  t.running = false;
+  t.startTime = null;
+
+  saveTables(tables);
 
   table.dataset.running = "false";
   clearInterval(table.timer);
+  // ενημέρωση UI
+  updateTable(table);
 }
+
+function loadBilliardTables() {
+  const data = localStorage.getItem("billiardTables");
+  if (!data) {
+    return [
+      {
+        name: "Μπιλιάρδο 1",
+        running: false,
+        startTime: null,
+        elapsedBefore: 0
+      }
+    ];
+  }
+  return JSON.parse(data);
+}
+
+function saveTables(tables) {
+  localStorage.setItem("billiardTables", JSON.stringify(tables));
+}
+
+
 
 function resetTable(table) {
   const cost = parseFloat(table.querySelector(".cost").textContent);
@@ -87,14 +198,23 @@ function resetTable(table) {
   table.querySelector(".table-name").value = `Μπιλιάρδο #${[...tablesContainer.children].indexOf(table) + 1}`;
 }
 
-function updateTable(table) {
-  const startTime = parseInt(table.dataset.startTime);
-  const elapsed = Math.floor((Date.now() - startTime) / 1000);
 
-  table.dataset.elapsed = elapsed;
-  table.querySelector(".time").textContent = formatTime(elapsed);
-  updateCost(table, elapsed);
+function updateTable(table) {
+  const id = table.dataset.id;
+  const tables = loadBilliardTables();
+  const t = tables[id];
+
+  let seconds = t.elapsedBefore;
+
+  if (t.running) {
+    seconds += Math.floor((Date.now() - t.startTime) / 1000);
+  }
+
+  table.querySelector(".time").textContent = formatTime(seconds);
+  table.querySelector(".cost").textContent =
+    calculateCost(seconds).toFixed(2) + " €";
 }
+
 
 // ============================
 // Υπολογισμοί
@@ -125,7 +245,7 @@ function resetDailyTotal() {
 
 function getBusinessDate() {
   const now = new Date();
-  if (now.getHours() < RESET_HOUR) {
+  if (now.getHours() < RESET_HOUR) {     ////// +4
     now.setDate(now.getDate() - 1);
   }
   return now.toISOString().split("T")[0]; // YYYY-MM-DD
