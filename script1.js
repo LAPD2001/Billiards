@@ -102,11 +102,19 @@ function createTableUI(index) {
 
   tablesContainer.appendChild(table);
 
+  // if (t.running) {
+  //   startTimer(table);
+  // } else {
+  //   updateTable(table);
+  // }
   if (t.running) {
-    startTimer(table);
-  } else {
+    table.timer = setInterval(() => {
     updateTable(table);
-  }
+  }, 1000);
+  updateTable(table);
+} else {
+  updateTable(table);
+}
 }
 
 
@@ -114,12 +122,11 @@ function createTableUI(index) {
 // Timer functions
 // ============================
 function startTimer(table) {
-  if (table.dataset.running === "true") return;
-
   const id = table.dataset.id;
   const tables = loadBilliardTables();
-
   const t = tables[id];
+
+  if (t.running) return; // idi trexei to timer
 
   t.running = true;
   t.startTime = Date.now();
@@ -159,6 +166,7 @@ function stopTimer(table) {
   updateTable(table);
 }
 
+
 function loadBilliardTables() {
   const data = localStorage.getItem("billiardTables");
   if (!data) {
@@ -179,7 +187,6 @@ function saveTables(tables) {
 }
 
 
-
 function resetTable(table) {
   const cost = parseFloat(table.querySelector(".cost").textContent);
 
@@ -198,12 +205,14 @@ function resetTable(table) {
   table.querySelector(".table-name").value = `Μπιλιάρδο #${[...tablesContainer.children].indexOf(table) + 1}`;
 }
 
+
 function calculateCost(seconds) {
   const pricePerHour =
     parseFloat(document.getElementById("pricePerHour").value) || 0;
 
   return (seconds / 3600) * pricePerHour;
 }
+
 
 function updateTable(table) {
   const id = table.dataset.id;
@@ -239,6 +248,7 @@ function formatTime(sec) {
   const s = String(sec % 60).padStart(2, "0");
   return `${h}:${m}:${s}`;
 }
+
 
 function resetDailyTotal() {
   if (!confirm("Θέλεις σίγουρα να μηδενίσεις το σύνολο της ημέρας;")) return;
