@@ -95,6 +95,9 @@ input {
   background: #6d4c41;
 }
 
+.removeTableBtn {
+  background: #cf2ff7;
+}
 
 .buttons button:hover {
   opacity: 0.85;
