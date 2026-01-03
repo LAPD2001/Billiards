@@ -67,7 +67,7 @@ function createTableUI(index) {
   table.querySelector(".start").onclick = () => startTimer(table);
   table.querySelector(".stop").onclick = () => stopTimer(table);
   table.querySelector(".reset").onclick = () => resetTable(table);
-  table.querySelector(".remove").onclick = () => removeTable(table);
+  table.querySelector(".removeTableBtn").onclick = () => removeTable(table);
 
 
   table.querySelector(".table-name").onchange = e => {
