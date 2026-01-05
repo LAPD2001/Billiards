@@ -57,7 +57,7 @@ function createTableUI(index) {
   table.innerHTML = `
     <input class="table-name" value="${t.name}">
     <div>Χρόνος: <span class="time">00:00:00</span></div>
-    <div>Χρέωση: <span class="cost">0.00</span> €</div>
+    <div>Χρέωση: <span class="cost">0.00</span></div>
     <div class="buttons">
       <button class="start">START</button>
       <button class="stop">STOP</button>
@@ -89,9 +89,9 @@ function createTableUI(index) {
     updateTable(table);
   }, 1000);
   updateTable(table);
-} else {
-  updateTable(table);
-}
+  } else {
+    updateTable(table);
+  }
 }
 
 
@@ -149,7 +149,7 @@ function loadBilliardTables() {
   if (!data) {
     return [
       {
-        name: "Μπιλιάρδο 1",
+        name: "Μπιλιάρδο #1",
         running: false,
         startTime: null,
         elapsedBefore: 0
