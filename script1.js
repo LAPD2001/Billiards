@@ -55,7 +55,7 @@ function createTableUI(index) {
   table.dataset.running = t.running ? "true" : "false";
 
   table.innerHTML = `
-    <input class="table-name" value="#${t.name}">
+    <input class="table-name" value="${t.name}">
     <div>Χρόνος: <span class="time">00:00:00</span></div>
     <div>Χρέωση: <span class="cost">0.00</span> €</div>
     <div class="buttons">
