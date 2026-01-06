@@ -74,7 +74,7 @@ function resetTable(table) {
   t.running = false;
   t.startTime = null;
   t.elapsedBefore = 0;
-  t.name = `Μπιλιάρδο #${Number(id) + 1}`;
+  //t.name = `Μπιλιάρδο #${Number(id) + 1}`;    ///////to kano gia na min allazei to onoma meta to reset
 
   saveTables(tables);
 
