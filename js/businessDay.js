@@ -1,3 +1,5 @@
+const RESET_HOUR = 4; // 4 π.μ.
+
 function resetDailyTotal() {
   if (!confirm("Θέλεις σίγουρα να μηδενίσεις το σύνολο της ημέρας;")) return;
 
