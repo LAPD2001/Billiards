@@ -133,3 +133,55 @@ input {
   opacity: 0.85;
 }
 
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #1f1f1f;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 280px;
+  text-align: center;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+#modalPaid {
+  background: #2e7d32;
+  color: white;
+}
+
+#modalUnpaid {
+  background: #6d4c41;
+  color: white;
+}
+
+#modalCancel {
+  background: #b71c1c;
+  color: white;
+}
+
+.modal-buttons button {
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
