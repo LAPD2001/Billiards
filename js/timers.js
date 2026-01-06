@@ -42,7 +42,7 @@ function stopTimer(table) {
   updateTable(table);
 }
 
-function resetTable(table) {
+async function resetTable(table) {
   const id = table.dataset.id;
   const tables = loadBilliardTables();
   const t = tables[id];
@@ -62,6 +62,16 @@ function resetTable(table) {
 
   // Προσθήκη στο ημερήσιο σύνολο
   if (cost > 0) {
+    // dailyTotal += cost;
+    // localStorage.setItem("dailyTotal", dailyTotal);
+    // dailyTotalEl.textContent = dailyTotal.toFixed(2);
+    const result = await showResetModal(cost);
+
+    if (result === "cancel") return;
+    if (result === "paid") addToDailyTotal = true;
+  }
+
+  if (addToDailyTotal && cost > 0) {
     dailyTotal += cost;
     localStorage.setItem("dailyTotal", dailyTotal);
     dailyTotalEl.textContent = dailyTotal.toFixed(2);
@@ -84,6 +94,34 @@ function resetTable(table) {
   table.querySelector(".cost").textContent = "0.00 €";
   table.querySelector(".table-name").value = t.name;
 }
+
+//xrhsimopoieitai sto resetTable
+function showResetModal(amount) {
+  return new Promise(resolve => {
+    const modal = document.getElementById("resetModal");
+    const text = document.getElementById("resetModalText");
+
+    text.textContent = `Ποσό: ${amount.toFixed(2)} €`;
+
+    modal.classList.remove("hidden");
+
+    document.getElementById("modalPaid").onclick = () => {
+      modal.classList.add("hidden");
+      resolve("paid");
+    };
+
+    document.getElementById("modalUnpaid").onclick = () => {
+      modal.classList.add("hidden");
+      resolve("unpaid");
+    };
+
+    document.getElementById("modalCancel").onclick = () => {
+      modal.classList.add("hidden");
+      resolve("cancel");
+    };
+  });
+}
+
 
 function updateTable(table) {
   const id = table.dataset.id;
