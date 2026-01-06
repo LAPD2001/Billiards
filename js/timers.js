@@ -59,7 +59,8 @@ async function resetTable(table) {
   // if (cost > 0 && !confirm(`Πληρώθηκαν ${cost.toFixed(2)} €;`)) {
   //   return;
   // }
-
+  
+  let addToDailyTotal = false;
   // Προσθήκη στο ημερήσιο σύνολο
   if (cost > 0) {
     // dailyTotal += cost;
