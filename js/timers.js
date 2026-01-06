@@ -55,10 +55,10 @@ async function resetTable(table) {
 
   const cost = calculateCost(seconds);
 
-  // Επιβεβαίωση πληρωμής
-  if (cost > 0 && !confirm(`Πληρώθηκαν ${cost.toFixed(2)} €;`)) {
-    return;
-  }
+  // // Επιβεβαίωση πληρωμής
+  // if (cost > 0 && !confirm(`Πληρώθηκαν ${cost.toFixed(2)} €;`)) {
+  //   return;
+  // }
 
   // Προσθήκη στο ημερήσιο σύνολο
   if (cost > 0) {
