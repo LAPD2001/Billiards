@@ -232,7 +232,7 @@ input {
   color: #a5d6a7;
 }
 
-.history-btn {
+.action-btn {
   background: #1f2933;
   color: #fff;
   border: none;
@@ -244,11 +244,11 @@ input {
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
-.history-btn:hover {
+.action-btn:hover {
   background: #111827;
   transform: translateY(-1px);
 }
 
-.history-btn:active {
+.action-btn:active {
   transform: translateY(0);
 }
