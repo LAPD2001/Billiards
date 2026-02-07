@@ -235,7 +235,7 @@ input {
 }
 
 .history {
-  background: var(--blue);
+  background: var(--green-light);
   top: 15px;
 }
 
