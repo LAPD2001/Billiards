@@ -112,6 +112,7 @@ input {
   border: none;
   background: var(--green);
   color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
 .add-btn:hover {
@@ -132,6 +133,7 @@ input {
 .reset-day:hover {
   opacity: 0.85;
 }
+
 
 
 .modal {
@@ -232,23 +234,11 @@ input {
   color: #a5d6a7;
 }
 
-.action-btn {
-  background: #1f2933;
-  color: #fff;
-  border: none;
-  padding: 12px 18px;
-  font-size: 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-}
-
-.action-btn:hover {
+.history-btn:hover {
   background: #111827;
   transform: translateY(-1px);
 }
 
-.action-btn:active {
+.history-btn:active {
   transform: translateY(0);
 }
