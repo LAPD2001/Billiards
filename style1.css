@@ -116,7 +116,7 @@ input {
 }
 
 .action-btn:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .reset-day {
@@ -238,11 +238,3 @@ input {
   background: var(--blue);
 }
 
-.historyBtn:hover {
-  background: #111827;
-  transform: translateY(-1px);
-}
-
-.historyBtn:active {
-  transform: translateY(0);
-}
