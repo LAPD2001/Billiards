@@ -236,7 +236,7 @@ input {
 
 .historyBtn {
   background: var(--blue);
-  margin-top: 15px;
+  top: 15px;
 }
 
 .historyBtn:hover {
