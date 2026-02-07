@@ -234,12 +234,12 @@ input {
   color: #a5d6a7;
 }
 
-.history {
-  background: var(--green-light);
+.historyBtn {
+  background: var(--blue);
   top: 15px;
 }
 
-.history:hover {
+.historyBtn:hover {
   background: #111827;
   transform: translateY(-1px);
 }
