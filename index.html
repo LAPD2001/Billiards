@@ -24,6 +24,9 @@
   <div class="tables" id="tables"></div>
 
   <button class="add-btn" id="addTableBtn">➕ Προσθήκη Μπιλιάρδου</button>
+  <br> 
+  <button id="historyBtn">📊 Ημερήσια Έσοδα</button>
+
 
 <!--Gia to parathiro tou reset-->
   <div id="resetModal" class="modal hidden">
@@ -37,11 +40,25 @@
     </div>
   </div>
 
+  <!--Gia to parathiro tou history-->
+  <div id="historyOverlay" class="overlay" style="display:none;">
+  <div class="history-modal">
+    <div class="history-header">
+      <h2>Ημερήσια Έσοδα</h2>
+      <span id="closeHistory" class="close-btn">✖</span>
+    </div>
+
+    <div id="historyContent"></div>
+  </div>
+</div>
+
+
   <!--<script src="js/script1.js"></script>-->
   <script src="js/storage.js"></script>
   <script src="js/timers.js"></script>
   <script src="js/tables.js"></script>
   <script src="js/businessDay.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/historyModal.js"></script>
 </body>
 </html>

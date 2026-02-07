@@ -185,3 +185,49 @@ input {
   border-radius: 6px;
   cursor: pointer;
 }
+
+
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.history-modal {
+  background: #1f1f1f;
+  color: #f5f5f5;
+  width: 400px;
+  max-height: 70vh;
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.history-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+}
+
+.history-row span:last-child {
+  font-weight: bold;
+  color: #a5d6a7;
+}
