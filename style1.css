@@ -244,6 +244,6 @@ input {
   transform: translateY(-1px);
 }
 
-.history:active {
+.historyBtn:active {
   transform: translateY(0);
 }
