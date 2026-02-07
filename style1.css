@@ -234,6 +234,11 @@ input {
   color: #a5d6a7;
 }
 
+.history-btn {
+  background: var(--blue);
+  margin-top: 12px;
+}
+
 .history-btn:hover {
   background: #111827;
   transform: translateY(-1px);
