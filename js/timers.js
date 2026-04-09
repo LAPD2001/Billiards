@@ -181,7 +181,7 @@ function addPercent(table) {
   const percent = parseFloat(prompt("Πόσο % αύξηση;"));
   if (isNaN(percent)) return;
 
-  tables[id].multiplier *= (1 + percent / 100);
+  tables[id].multiplier = (1 + percent / 100);
 
   saveTables(tables);
   updateTable(table);

@@ -35,8 +35,8 @@ function createTableUI(index) {
       <button class="reset">RESET</button>
       <button class="removeTableBtn">Αφαίρεση τραπεζιού</button>
       <br>
-      <button class="add-euro">+€</button>
-      <button class="add-percent">+%</button>
+      <button class="add-euro">+€ (0.00€)</button>
+      <button class="add-percent">+% (0%)</button>
     </div>
   `;
 
