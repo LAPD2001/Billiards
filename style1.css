@@ -204,8 +204,8 @@ input {
 .history-modal {
   background: var(--card);
   color: #f5f5f5;
-  width: 400px;
-  max-height: 500px;
+  width: 500px;
+  height: 700px;
   border-radius: 12px;
   padding: 20px;
   display: flex;
@@ -265,4 +265,5 @@ input {
 .tab.active {
   background: var(--blue);
   transform: scale(1.05); /* μικρό zoom */
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
