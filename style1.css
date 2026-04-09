@@ -223,7 +223,7 @@ input {
   font-size: 18px;
 }
 
-/*.history-row {
+.history-row {
   display: flex;
   justify-content: space-between;
   padding: 8px 0;
@@ -234,7 +234,6 @@ input {
   font-weight: bold;
   color: #a5d6a7;
 }
-*/
 
 .history-tabs {
   display: flex;
