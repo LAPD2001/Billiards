@@ -234,6 +234,7 @@ input {
   justify-content: space-between;
   padding: 8px 0;
   border-bottom: 1px solid #333;
+  margin-left: 8px;
 }
 
 .history-row span:last-child {
