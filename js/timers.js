@@ -138,8 +138,9 @@ function updateTable(table) {
   }
 
   table.querySelector(".time").textContent = formatTime(seconds);
-  table.querySelector(".cost").textContent =
-    calculateCost(seconds, t).toFixed(2) + " €";
+  table.querySelector(".cost").textContent = calculateCost(seconds, t).toFixed(2) + " €";
+
+  updateExtraButtons(table, t);
 }
 
 
@@ -185,4 +186,16 @@ function addPercent(table) {
 
   saveTables(tables);
   updateTable(table);
+}
+
+
+// listeners για τα κουμπιά +€ και +% σε κάθε τραπέζι
+function updateExtraButtons(table, t) {
+  const euroBtn = table.querySelector(".add-euro");
+  const percentBtn = table.querySelector(".add-percent");
+
+  euroBtn.textContent = `+€ (${t.extraCost.toFixed(2)})`;
+
+  const percent = ((t.multiplier - 1) * 100);
+  percentBtn.textContent = `+% (${percent.toFixed(0)}%)`;
 }
