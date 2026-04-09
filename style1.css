@@ -202,12 +202,18 @@ input {
 }
 
 .history-modal {
-  background: #1f1f1f;
+  background: var(--card);
   color: #f5f5f5;
   width: 400px;
-  max-height: 70vh;
+  max-height: 500px;
   border-radius: 12px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#dailyHistoryContent {
+  flex: 1;
   overflow-y: auto;
 }
 
@@ -237,7 +243,8 @@ input {
 
 .history-tabs {
   display: flex;
-  margin-bottom: 10px;
+  gap: 10px; /* απόσταση μεταξύ κουμπιών */
+  margin-bottom: 15px;
 }
 
 .tab {
@@ -245,11 +252,17 @@ input {
   padding: 10px;
   cursor: pointer;
   border: none;
-  background: #333;
+  background: #2c2c2c;
   color: white;
-  border-radius: 6px 6px 0 0;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  background: #444;
 }
 
 .tab.active {
   background: var(--blue);
+  transform: scale(1.05); /* μικρό zoom */
 }
