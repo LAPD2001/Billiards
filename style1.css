@@ -236,3 +236,21 @@ input {
 }
 */
 
+.history-tabs {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 6px 6px 0 0;
+}
+
+.tab.active {
+  background: var(--blue);
+}
