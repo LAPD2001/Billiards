@@ -96,6 +96,8 @@ async function resetTable(table) {
   table.querySelector(".time").textContent = "00:00:00";
   table.querySelector(".cost").textContent = "0.00 €";
   table.querySelector(".table-name").value = t.name;
+
+  updateExtraButtons(table, t);
 }
 
 //xrhsimopoieitai sto resetTable
