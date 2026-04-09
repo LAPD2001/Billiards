@@ -223,9 +223,16 @@ input {
   font-size: 18px;
 }
 
-
-
-.dailyHistoryBtn {
-  background: var(--blue);
+/*.history-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
 }
+
+.history-row span:last-child {
+  font-weight: bold;
+  color: #a5d6a7;
+}
+*/
 
