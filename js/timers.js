@@ -53,7 +53,7 @@ async function resetTable(table) {
     seconds += Math.floor((Date.now() - t.startTime) / 1000);
   }
 
-  const cost = calculateCost(seconds);
+  const cost = calculateCost(seconds, t);
 
   // // Επιβεβαίωση πληρωμής
   // if (cost > 0 && !confirm(`Πληρώθηκαν ${cost.toFixed(2)} €;`)) {
@@ -137,19 +137,50 @@ function updateTable(table) {
 
   table.querySelector(".time").textContent = formatTime(seconds);
   table.querySelector(".cost").textContent =
-    calculateCost(seconds).toFixed(2) + " €";
+    calculateCost(seconds, t).toFixed(2) + " €";
 }
 
-function calculateCost(seconds) {
-  const pricePerHour =
-    parseFloat(document.getElementById("pricePerHour").value) || 0;
 
-  return (seconds / 3600) * pricePerHour;
+function calculateCost(seconds, t) {
+  const pricePerHour = parseFloat(document.getElementById("pricePerHour").value) || 0;
+
+    const base = (seconds / 3600) * pricePerHour;
+    return (base * t.multiplier) + t.extraCost;
+  // return (seconds / 3600) * pricePerHour;
 }
+
 
 function formatTime(sec) {
   const h = String(Math.floor(sec / 3600)).padStart(2, "0");
   const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
   const s = String(sec % 60).padStart(2, "0");
   return `${h}:${m}:${s}`;
+}
+
+
+function addExtraEuro(table) {
+  const id = table.dataset.id;
+  const tables = loadBilliardTables();
+
+  const amount = parseFloat(prompt("Πόσα € να προστεθούν;"));
+  if (isNaN(amount)) return;
+
+  tables[id].extraCost += amount;
+
+  saveTables(tables);
+  updateTable(table);
+}
+
+
+function addPercent(table) {
+  const id = table.dataset.id;
+  const tables = loadBilliardTables();
+
+  const percent = parseFloat(prompt("Πόσο % αύξηση;"));
+  if (isNaN(percent)) return;
+
+  tables[id].multiplier *= (1 + percent / 100);
+
+  saveTables(tables);
+  updateTable(table);
 }

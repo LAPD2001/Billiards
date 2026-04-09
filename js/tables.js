@@ -1,3 +1,7 @@
+//listeners για τα κουμπιά +€ και +% σε κάθε τραπέζι
+table.querySelector(".add-euro").onclick = () => addExtraEuro(table);
+table.querySelector(".add-percent").onclick = () => addPercent(table);
+
 function addTable() {
   const tables = loadBilliardTables();
 
@@ -5,7 +9,9 @@ function addTable() {
     name: `Μπιλιάρδο #${tables.length + 1}`,
     running: false,
     startTime: null,
-    elapsedBefore: 0
+    elapsedBefore: 0,
+    extraCost: 0,        // fixed eutos
+    multiplier: 1        // percentage extra cost (1 = 100%)
   };
 
   tables.push(newTable);
@@ -32,6 +38,8 @@ function createTableUI(index) {
       <button class="stop">STOP</button>
       <button class="reset">RESET</button>
       <button class="removeTableBtn">Αφαίρεση τραπεζιού</button>
+      <button class="add-euro">+€</button>
+      <button class="add-percent">+%</button>
     </div>
   `;
 
@@ -81,7 +89,7 @@ function removeTable(table) {
     seconds += Math.floor((Date.now() - t.startTime) / 1000);
   }
 
-  const cost = calculateCost(seconds);
+  const cost = calculateCost(seconds, t);
 
   // Αν είναι ανοιχτό ή έχει λεφτά → επιβεβαίωση
   if (t.running || cost > 0) {
