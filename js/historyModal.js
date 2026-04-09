@@ -3,6 +3,28 @@
 // const dailyHistoryContent = document.getElementById("dailyHistoryContent");
 // const closeDailyHistory = document.getElementById("closeDailyHistory");
 
+
+const tabDaily = document.getElementById("tabDaily");
+const tabMonthly = document.getElementById("tabMonthly");
+
+tabDaily.onclick = () => setActiveTab("daily");
+tabMonthly.onclick = () => setActiveTab("monthly");
+
+
+//Gia ta tabs tou history modal
+function setActiveTab(type) {
+  tabDaily.classList.remove("active");
+  tabMonthly.classList.remove("active");
+
+  if (type === "daily") {
+    tabDaily.classList.add("active");
+    renderDaily();
+  } else {
+    tabMonthly.classList.add("active");
+    renderMonthly();
+  }
+}
+
 dailyHistoryBtn.onclick = openDailyHistory;
 closeDailyHistory.onclick = closeDailyHistoryModal;
 
