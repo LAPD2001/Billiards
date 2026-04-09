@@ -1,6 +1,4 @@
-//listeners για τα κουμπιά +€ και +% σε κάθε τραπέζι
-table.querySelector(".add-euro").onclick = () => addExtraEuro(table);
-table.querySelector(".add-percent").onclick = () => addPercent(table);
+
 
 function addTable() {
   const tables = loadBilliardTables();
@@ -47,6 +45,8 @@ function createTableUI(index) {
   table.querySelector(".stop").onclick = () => stopTimer(table);
   table.querySelector(".reset").onclick = () => resetTable(table);
   table.querySelector(".removeTableBtn").onclick = () => removeTable(table);
+  table.querySelector(".add-euro").onclick = () => addExtraEuro(table);
+  table.querySelector(".add-percent").onclick = () => addPercent(table);
 
 
   table.querySelector(".table-name").onchange = e => {
