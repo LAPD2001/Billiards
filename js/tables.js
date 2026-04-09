@@ -1,5 +1,3 @@
-
-
 function addTable() {
   const tables = loadBilliardTables();
 

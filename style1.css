@@ -99,6 +99,14 @@ input {
   background: #cf2ff7;
 }
 
+.add-euro {
+  background: #6287ff;
+}
+
+.add-percent {
+  background: #6287ff;
+}
+
 .buttons button:hover {
   opacity: 0.85;
 }
